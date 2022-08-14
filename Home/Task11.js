@@ -14,23 +14,24 @@ frequencySort(['bob', 'bob', 'carl', 'alex', 'bob']) == ['bob', 'bob', 'bob', 'c
 
 Предварительное условие: Элементы могут быть целыми числами или строками.
  */
-
 const frequencySort = (items)=>{
     let count={}
     for (let i=0; i<items.length;i++){
         if (!count[items[i]]){
             count[items[i]]=0
-        }else{
-            continue
-        }
-        for (let j=i;j<=items.length;j++){
-            if (items[j]==items[i]){
-                count[items[i]]=+count[items[i]]+1
+            for (let j=i;j<=items.length;j++){
+                if (items[j]==items[i]){
+                    count[items[i]]=+count[items[i]]+1
+                }
             }
         }
     }
-    let arr= Object.keys(count).sort(function(a,b){return count[b]-count[a]})
+    let arr = items.sort((a, b) => count[a] != count[b] ? count[b] - count[a] : items.indexOf(a) - items.indexOf(b))
     return arr
 }
 
-frequencySort([2,3,4,5,4,4,4,3,1,2,2])
+frequencySort([1,4,3,6,5,3,7,7,77,3,5])
+
+/*
+Можно было использовать reduce для подсчета количества элементов, но это уже в другой раз...
+ */
