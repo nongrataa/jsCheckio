@@ -31,15 +31,39 @@ const sortByExt = (files)=>{
         console.log(obj)
         return obj
     })
-    let newArr=[]
-    for (let i=0;i<arrFiles.length;i++){
-
-    }
+    console.log(arrFiles)
+    let ac={'1.cad': 'cad', '.bat': 'bat', '1.aa': 'aa', '12.aa':'aa'}
+    /*let br = 'aaa'<'aaa'
+    console.log(br)*/
+    console.log(ac)
+    let arr = files.sort((a,b)=>{
+        // return ac[a]-ac[b] || a-b
+        /*console.log(`a - ${a} b-${b}`)
+        console.log(`a - ${ac[a]} b-${ac[b]}`)*/
+        if (ac[a]<ac[b]){
+            // console.log(`'<',${ac[a]<ac[b]} - ${ac[a]} --  ${ac[b]}`)
+            return -1
+        }
+        if (ac[a]>ac[b]) {
+            // console.log(`'>',${ac[a]>ac[b]} - ${ac[a]} --  ${ac[b]}`)
+            return 1
+        }
+        // console.log(`a - ${a} = b - ${b} `)
+        if (ac[a]==ac[b]) {
+            console.log(`a - ${a} = b - ${b} `)
+            if (a<b) return -1
+            if (a>b) return 1
+            if (a==b) return 0
+            // console.log(`'=',${ac[a]=ac[b]} - ${ac[a]} --  ${ac[b]}`)
+        }
+    })
+    console.log('files - ',files)
+    console.log('arr - ',arr)
 
 }
 
 
-sortByExt(['1.cad', '.bat', '1.aa'])
+sortByExt(['.bat', '12.aa', '1.aa','1.cad'])
 
 /*
 Создать массив объектов с именем и расширением

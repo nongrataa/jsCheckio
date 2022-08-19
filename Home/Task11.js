@@ -26,6 +26,7 @@ const frequencySort = (items)=>{
             }
         }
     }
+    console.log(count)
     let arr = items.sort((a, b) => count[a] != count[b] ? count[b] - count[a] : items.indexOf(a) - items.indexOf(b))
     return arr
 }
