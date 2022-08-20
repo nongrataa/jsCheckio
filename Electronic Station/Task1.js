@@ -23,49 +23,54 @@ sortByExt(['1.cad', '1.bat', '1.aa', '1.aa.doc']) == ['1.aa', '1.bat', '1.cad', 
 
 
 const sortByExt = (files)=>{
-    let arrFiles = files.map((a)=>{
-        let obj={}
-        let arr = a.split('.')
-        obj[a] =  arr[arr.length-1]
-        console.log(a)
-        console.log(obj)
-        return obj
+    let obj={}
+    for (let i=0;i<files.length;i++){
+        let arr = files[i].split('.')
+        obj[files[i]]=arr[arr.length-1]
+    }
+    console.log(obj)
+    let arrSorted = files.sort((a,b)=>{
+        if (b.split('.')[0]=='' && a.split('.')[0]==''){
+            if (obj[a]<obj[b]){
+                return -1
+            }
+            if (obj[a]>obj[b]) {
+                return 1
+            }
+            if (obj[a]==obj[b]) {
+                return 1
+            }
+        }else {
+            if (obj[a]<obj[b]){
+                if (b.split('.')[0]==''){
+                    return 1
+                }
+                return -1
+            }
+            if (obj[a]>obj[b]) {
+                if (a.split('.')[0]==''){
+                    return -1
+                }
+                return 1
+            }
+            if (obj[a]==obj[b]) {
+                if (a<b) return -1
+                if (a>b) return 1
+                if (a==b) return 0
+            }
+        }
     })
-    console.log(arrFiles)
-    let ac={'1.cad': 'cad', '.bat': 'bat', '1.aa': 'aa', '12.aa':'aa'}
-    /*let br = 'aaa'<'aaa'
-    console.log(br)*/
-    console.log(ac)
-    let arr = files.sort((a,b)=>{
-        // return ac[a]-ac[b] || a-b
-        /*console.log(`a - ${a} b-${b}`)
-        console.log(`a - ${ac[a]} b-${ac[b]}`)*/
-        if (ac[a]<ac[b]){
-            // console.log(`'<',${ac[a]<ac[b]} - ${ac[a]} --  ${ac[b]}`)
-            return -1
-        }
-        if (ac[a]>ac[b]) {
-            // console.log(`'>',${ac[a]>ac[b]} - ${ac[a]} --  ${ac[b]}`)
-            return 1
-        }
-        // console.log(`a - ${a} = b - ${b} `)
-        if (ac[a]==ac[b]) {
-            console.log(`a - ${a} = b - ${b} `)
-            if (a<b) return -1
-            if (a>b) return 1
-            if (a==b) return 0
-            // console.log(`'=',${ac[a]=ac[b]} - ${ac[a]} --  ${ac[b]}`)
-        }
-    })
-    console.log('files - ',files)
-    console.log('arr - ',arr)
-
+    return arrSorted
 }
 
 
-sortByExt(['.bat', '12.aa', '1.aa','1.cad'])
+
+
+console.log(sortByExt(['1.cad', '1.bat', '.bat', '1.aa']))
+console.log(sortByExt(['1.cad', '1.bat', '.aa', '.bat']))
+console.log(sortByExt(['1.cad', '1.bat', '1.aa', '.aa.doc']))
 
 /*
-Создать массив объектов с именем и расширением
-затем отсортировать по расширению, если одинаковые то по названию
+
  */
+
