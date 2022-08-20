@@ -25,38 +25,31 @@ sortByExt(['1.cad', '1.bat', '1.aa', '1.aa.doc']) == ['1.aa', '1.bat', '1.cad', 
 const sortByExt = (files)=>{
     let obj={}
     for (let i=0;i<files.length;i++){
-        let arr = files[i].split('.')
-        obj[files[i]]=arr[arr.length-1]
+        let arr=files[i].split('.')
+        obj[files[i]]={typeF:arr[arr.length-1], nameF:files[i].slice(0,-arr[arr.length-1].length-1)}
     }
-    console.log(obj)
     let arrSorted = files.sort((a,b)=>{
-        if (b.split('.')[0]=='' && a.split('.')[0]==''){
-            if (obj[a]<obj[b]){
+        if (obj[a].nameF=='' && obj[b].nameF==''){
+            if (obj[a].typeF<obj[b].typeF){
                 return -1
-            }
-            if (obj[a]>obj[b]) {
-                return 1
-            }
-            if (obj[a]==obj[b]) {
-                return 1
-            }
+            }else return 1
         }else {
-            if (obj[a]<obj[b]){
-                if (b.split('.')[0]==''){
+            if (obj[a].typeF<obj[b].typeF){
+                if (obj[b].nameF==''){
                     return 1
                 }
                 return -1
             }
-            if (obj[a]>obj[b]) {
-                if (a.split('.')[0]==''){
+            if (obj[a].typeF>obj[b].typeF){
+                if (obj[a].nameF==''){
                     return -1
                 }
                 return 1
             }
-            if (obj[a]==obj[b]) {
-                if (a<b) return -1
-                if (a>b) return 1
-                if (a==b) return 0
+            if (obj[a].typeF==obj[b].typeF){
+                if (a<b)return -1
+                if (a>b)return 1
+                if (a==b)return 0
             }
         }
     })
@@ -66,8 +59,8 @@ const sortByExt = (files)=>{
 
 
 
-console.log(sortByExt(['1.cad', '1.bat', '.bat', '1.aa']))
-console.log(sortByExt(['1.cad', '1.bat', '.aa', '.bat']))
+/*console.log(sortByExt(['1.cad', '1.bat', '.bat', '1.aa']))
+console.log(sortByExt(['1.cad', '1.bat', '.aa', '.bat']))*/
 console.log(sortByExt(['1.cad', '1.bat', '1.aa', '.aa.doc']))
 
 /*
