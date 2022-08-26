@@ -61,8 +61,8 @@ const sortByExt = (files)=>{
 
 /*console.log(sortByExt(['1.cad', '1.bat', '.bat', '1.aa']))
 console.log(sortByExt(['1.cad', '1.bat', '.aa', '.bat']))*/
-console.log(sortByExt(['1.cad', '1.bat', '1.aa', '.aa.doc']))
-
+// console.log(sortByExt(['1.cad', '1.bat', '1.aa', '.aa.doc']))
+console.log(sortByExt(['1.cad', '1.bat', '1.aa', '.bat']))
 /*
 
  */
