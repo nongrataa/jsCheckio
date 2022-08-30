@@ -37,18 +37,32 @@ const wordsOrder = (text, words) => {
             }
         }
     }
-    for (let i = 0; i < indexWord.length - 1; i++) {
-        if (indexWord[i] < indexWord[i + 1]){
-            continue
-        } else return false
-    }
-    console.log(indexWord===[])
-    if (indexWord===[]){
+    if (words.length>indexWord.length){
         return false
-    }else return true
+    }else {
+        for (let i = 0; i < indexWord.length - 1; i++) {
+            if (indexWord[i] < indexWord[i + 1]){
+                continue
+            } else return false
+        }
+    }
+    return true
 }
 
 
-console.log(wordsOrder('hi world im here', ['world', 'im']))
-console.log(wordsOrder('hi world im here', ['world', 'here']))
-console.log(wordsOrder('hi world im here', ['wo', 'rld', 'he','re']))
+// console.log(wordsOrder('hi world im here', ['world', 'im']))
+// console.log(wordsOrder('hi world im here', ['world', 'here']))
+// console.log(wordsOrder('hi world im here', ['wo', 'rld', 'he','re']))
+
+
+// console.log(wordsOrder('hi world im here', ['world', 'here']));
+// console.log(wordsOrder('hi world im here', ['here', 'world']));
+// console.log(wordsOrder('hi world im here', ['world']));
+// console.log(wordsOrder('hi world im here', ['world', 'here', 'hi']));
+// console.log(wordsOrder('hi world im here', ['world', 'im', 'here']));
+// console.log(wordsOrder('hi world im here', ['world', 'hi', 'here']));
+// console.log(wordsOrder('hi world im here', ['world', 'world']));
+console.log(wordsOrder('hi world im here', ['country', 'world']));
+console.log(wordsOrder('hi world im here', ['wo', 'rld']));
+console.log(wordsOrder('', ['world', 'here']));
+// console.log(wordsOrder('hi world world im here', ['world', 'world']));
